@@ -1,4 +1,6 @@
-import { motion } from 'framer-motion';
+/** @format */
+
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,7 +14,7 @@ import {
   Twitter,
   MapPin,
   Phone,
-} from 'lucide-react';
+} from "lucide-react";
 
 const Contact = () => {
   const contactInfo = [
@@ -20,25 +22,25 @@ const Contact = () => {
       icon: <Mail className="h-5 w-5" />,
       title: "Email",
       value: "anishghimire178@gmail.com",
-      link: "mailto:anishghimire178@gmail.com"
+      link: "mailto:anishghimire178@gmail.com",
     },
     {
       icon: <Phone className="h-5 w-5" />,
       title: "Phone",
       value: "+977 9819326210",
-      link: "tel:+9779812345678"
+      link: "tel:+9779812345678",
     },
     {
       icon: <MapPin className="h-5 w-5" />,
       title: "Location",
-      value: "Dharan, Nepal"
-    }
+      value: "Dharan, Nepal",
+    },
   ];
 
   const socialLinks = [
     { icon: <Github className="h-5 w-5" />, href: "#", label: "GitHub" },
     { icon: <Linkedin className="h-5 w-5" />, href: "#", label: "LinkedIn" },
-    { icon: <Twitter className="h-5 w-5" />, href: "#", label: "Twitter" }
+    { icon: <Twitter className="h-5 w-5" />, href: "#", label: "Twitter" },
   ];
 
   // Animation variants
@@ -48,9 +50,9 @@ const Contact = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -60,9 +62,9 @@ const Contact = () => {
       opacity: 1,
       transition: {
         type: "spring",
-        stiffness: 100
-      }
-    }
+        stiffness: 100,
+      },
+    },
   };
 
   const backgroundVariants = {
@@ -72,14 +74,14 @@ const Contact = () => {
       opacity: 0.1,
       transition: {
         duration: 1,
-        type: "spring"
-      }
-    }
+        type: "spring",
+      },
+    },
   };
 
   return (
-    <motion.section 
-      id="contact" 
+    <motion.section
+      id="contact"
       className="py-24 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
@@ -87,58 +89,58 @@ const Contact = () => {
       variants={containerVariants}
     >
       {/* Animated Background Elements */}
-      <motion.div 
+      <motion.div
         className="absolute top-1/4 right-0 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"
         variants={backgroundVariants}
       />
-      <motion.div 
+      <motion.div
         className="absolute bottom-1/4 left-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"
         variants={backgroundVariants}
       />
 
       <div className="container mx-auto px-4">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="max-w-2xl mx-auto text-center mb-16"
           variants={itemVariants}
         >
           <Badge variant="outline" className="mb-4">
             Get in Touch
           </Badge>
-          <motion.h2 
+          <motion.h2
             className="text-3xl font-bold mb-4 tracking-tight"
             variants={itemVariants}
           >
-            Let&apos;s Connect
+            <h2 className="text-4xl font-extrabold mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              Let&apos;s Connect
+            </h2>{" "}
           </motion.h2>
-          <motion.p 
-            className="text-muted-foreground"
-            variants={itemVariants}
-          >
-            Have a question or want to work together? I&apos;d love to hear from you.
+          <motion.p className="text-muted-foreground" variants={itemVariants}>
+            Have a question or want to work together? I&apos;d love to hear from
+            you.
           </motion.p>
         </motion.div>
 
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-5 gap-8">
             {/* Contact Info Cards */}
-            <motion.div 
+            <motion.div
               className="lg:col-span-2 space-y-4"
               variants={itemVariants}
             >
               {contactInfo.map((info, index) => (
-                <motion.div 
-                  key={index} 
+                <motion.div
+                  key={index}
                   variants={itemVariants}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.05,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
                 >
                   <Card className="group hover:shadow-md transition-all">
                     <CardContent className="p-4">
                       {info.link ? (
-                        <a 
+                        <a
                           href={info.link}
                           className="flex items-start space-x-4 group-hover:text-primary transition-colors"
                         >
@@ -179,10 +181,10 @@ const Contact = () => {
                       {socialLinks.map((social, index) => (
                         <motion.div
                           key={index}
-                          whileHover={{ 
+                          whileHover={{
                             scale: 1.1,
                             rotate: 5,
-                            transition: { type: "spring", stiffness: 300 }
+                            transition: { type: "spring", stiffness: 300 },
                           }}
                           whileTap={{ scale: 0.9 }}
                         >
@@ -210,22 +212,19 @@ const Contact = () => {
             </motion.div>
 
             {/* Contact Form */}
-            <motion.div 
-              className="lg:col-span-3"
-              variants={itemVariants}
-            >
+            <motion.div className="lg:col-span-3" variants={itemVariants}>
               <Card>
                 <CardContent className="p-6">
-                  <motion.form 
+                  <motion.form
                     className="space-y-6"
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ 
-                      opacity: 1, 
+                    whileInView={{
+                      opacity: 1,
                       y: 0,
                       transition: {
                         type: "spring",
-                        stiffness: 100
-                      }
+                        stiffness: 100,
+                      },
                     }}
                     viewport={{ once: true }}
                   >

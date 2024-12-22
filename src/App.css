@@ -1,0 +1,19 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  padding-inline: 0rem; /* Default padding for small devices */
+}
+
+/* For medium and large devices */
+@media (min-width: 768px) {
+  #root {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #root {
+    padding-inline: 2rem; /* You can further adjust if needed for larger screens */
+  }
+}

@@ -1,5 +1,15 @@
+/** @format */
+
 import { useEffect, useState } from "react";
-import { Github, Star, GitFork, ExternalLink, Code2, Eye, Loader2 } from "lucide-react";
+import {
+  Github,
+  Star,
+  GitFork,
+  ExternalLink,
+  Code2,
+  Eye,
+  Loader2,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -16,10 +26,10 @@ const ProjectLoader = () => (
   <div className="flex justify-center items-center h-full">
     <motion.div
       animate={{ rotate: 360 }}
-      transition={{ 
-        repeat: Infinity, 
-        duration: 1, 
-        ease: "linear" 
+      transition={{
+        repeat: Infinity,
+        duration: 1,
+        ease: "linear",
       }}
     >
       <Loader2 className="h-8 w-8 text-primary animate-pulse" />
@@ -35,23 +45,28 @@ const Projects = () => {
   useEffect(() => {
     const fetchGitHubRepos = async () => {
       try {
-        const res = await fetch("https://api.github.com/users/TechExplorerAnish/repos", {
-          headers: {
-            'Accept': 'application/vnd.github.v3+json'
+        const res = await fetch(
+          "https://api.github.com/users/TechExplorerAnish/repos",
+          {
+            headers: {
+              Accept: "application/vnd.github.v3+json",
+            },
           }
-        });
+        );
         if (!res.ok) {
           throw new Error("Failed to fetch repos");
         }
         const data = await res.json();
-        
+
         // Sort repos by stars and most recent
         const sortedRepos = data
-          .filter(repo => !repo.fork) // Exclude forked repositories
-          .sort((a, b) => b.stargazers_count - a.stargazers_count || 
-                 new Date(b.updated_at) - new Date(a.updated_at))
+          .filter((repo) => !repo.fork && repo.name != "portfolio") // Exclude forked repositories
+          .sort(
+            (a, b) =>
+              b.stargazers_count - a.stargazers_count ||
+              new Date(b.updated_at) - new Date(a.updated_at)
+          )
           .slice(0, 6);
-
         setRepos(sortedRepos);
       } catch (err) {
         setError(err.message);
@@ -65,7 +80,10 @@ const Projects = () => {
 
   if (loading) {
     return (
-      <section id="projects" className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <section
+        id="projects"
+        className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
+      >
         <div className="container mx-auto px-4 text-center">
           <ProjectLoader />
         </div>
@@ -75,9 +93,12 @@ const Projects = () => {
 
   if (error) {
     return (
-      <section id="projects" className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <section
+        id="projects"
+        className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
+      >
         <div className="container mx-auto px-4 text-center">
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="text-red-500 text-lg font-semibold"
@@ -90,13 +111,13 @@ const Projects = () => {
   }
 
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
     >
       <div className="container mx-auto px-4">
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -122,9 +143,9 @@ const Projects = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ 
+              transition={{
                 delay: index * 0.1,
-                duration: 0.3
+                duration: 0.3,
               }}
             >
               <Card
@@ -137,15 +158,15 @@ const Projects = () => {
                     <div className="p-2 bg-primary/10 rounded-lg w-fit">
                       <Code2 className="h-4 w-4 text-primary group-hover:rotate-12 transition-transform" />
                     </div>
-                    <Badge 
-                      variant="secondary" 
+                    <Badge
+                      variant="secondary"
                       className="text-xs group-hover:bg-primary/10 transition-colors"
                     >
                       {repo.language || "Various"}
                     </Badge>
                   </div>
                   <CardTitle className="mt-4 group-hover:text-primary transition-colors">
-                    {repo.name.replace(/-/g, ' ')}
+                    {repo.name.replace(/-/g, " ")}
                   </CardTitle>
                   <CardDescription className="line-clamp-2 h-12">
                     {repo.description || "No description available."}
@@ -170,9 +191,9 @@ const Projects = () => {
                 </CardContent>
 
                 <CardFooter className="gap-2">
-                  <Button 
-                    asChild 
-                    variant="default" 
+                  <Button
+                    asChild
+                    variant="default"
                     className="w-full group/source"
                   >
                     <a
@@ -186,9 +207,9 @@ const Projects = () => {
                     </a>
                   </Button>
                   {repo.homepage && (
-                    <Button 
-                      asChild 
-                      variant="outline" 
+                    <Button
+                      asChild
+                      variant="outline"
                       size="icon"
                       className="group/live"
                     >
@@ -209,18 +230,13 @@ const Projects = () => {
         </div>
 
         {/* View More Button */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <Button 
-            asChild 
-            variant="outline" 
-            size="lg" 
-            className="group"
-          >
+          <Button asChild variant="outline" size="lg" className="group">
             <a
               href="https://github.com/TechExplorerAnish"
               target="_blank"
